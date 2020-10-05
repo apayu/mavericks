@@ -50,7 +50,7 @@ module Mavericks
     def controller_name
       klass = self.class
       klass = klass.to_s.gsub /Controller$/, ""
-      Mavericks.to_underscore klass
+      klass.to_underscore
     end
 
     def link_to(name = nil, url = nil)

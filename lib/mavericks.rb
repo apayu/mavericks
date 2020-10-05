@@ -1,10 +1,8 @@
 require "mavericks/version"
+require "active_support"
+require "active_record"
 require "mavericks/routing"
-require "mavericks/support"
-require "mavericks/dependencies"
 require "mavericks/controller"
-require "mavericks/file_Model"
-require 'byebug'
 
 module Mavericks
   class Error < StandardError; end

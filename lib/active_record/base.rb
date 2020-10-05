@@ -46,8 +46,8 @@ module ActiveRecord
     end
 
     def self.table_name
-      singular_table_name = Mavericks.to_underscore name
-      Mavericks.to_plural singular_table_name
+      singular_table_name = name.to_s.to_underscore
+      singular_table_name.to_plural
     end
 
     def self.count
