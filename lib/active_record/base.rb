@@ -1,5 +1,3 @@
-require 'yaml'
-
 module ActiveRecord
   class Base
     include Persistence
@@ -14,14 +12,13 @@ module ActiveRecord
       @new_record
     end
 
-    def self.establish_connection
-      raw = File.read('config/database.yml')
-      database_config = YAML.safe_load(raw)
-      case database_config['default']['adapter']
+    def self.establish_connection(options)
+      database_name = options[:database_name]
+      case options[:database_adapter]
       when 'postgresql'
-        @@connection = ConnectionAdapter::PostgreSQLAdapter.new(database_config['development']['database'])
+        @@connection = ConnectionAdapter::PostgreSQLAdapter.new(database_name)
       when 'sqlite'
-        @@connection = ConnectionAdapter::SQLiteAdapter.new(database_config['development']['database'])
+        @@connection = ConnectionAdapter::SQLiteAdapter.new(database_name)
       end
     end
 
