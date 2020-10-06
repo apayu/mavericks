@@ -10,7 +10,7 @@ module Mavericks
         klass, act =  get_controller_and_action(env)
         controller = klass.new(env)
 
-        controller.send(act)
+        controller.process(act)
         default_render(controller, act) unless controller.content
         controller.render_layout
 
