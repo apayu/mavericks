@@ -11,5 +11,24 @@ class String
     pattern = /.*s$|x$|z$|sh$|ch$/
     pattern.match?(str) ? "#{str}es" : "#{str}s"
   end
+
+  def singularize
+    self.chomp 's'
+  end
+
+  def classify
+    self.to_s.gsub(/\/(.?)/) { "::#{$1.upcase}" }.gsub(/(?:^|_)(.)/) { $1.upcase }
+  end
+
+  def constantize
+    names = self.split('::')
+    names.shift if names.empty? || names.first.empty?
+
+    constant = Object
+    names.each do |name|
+      constant = constant.const_get(name, false) || constant.const_missing(name)
+    end
+    constant
+  end
 end
 
