@@ -5,3 +5,4 @@ require "active_support"
 require "active_record"
 require "action_controller"
 require "action_dispatch"
+require 'action_view'

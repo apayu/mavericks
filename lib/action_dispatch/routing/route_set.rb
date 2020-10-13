@@ -24,8 +24,6 @@ module ActionDispatch
         controller.request = request
         controller.response = Rack::Response.new
         controller.process(action)
-        controller.default_render(action) unless controller.content
-        controller.render_layout
         controller.response.finish
       end
     end
